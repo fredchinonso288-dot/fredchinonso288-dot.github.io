@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101827">
+  <meta name="description" content="The Apostle Cybersecurity Bible — a practical, searchable cybersecurity learning reference.">
+  <title>The Apostle Cybersecurity Bible</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#home" aria-label="The Apostle Cybersecurity Bible home">
+      <span class="brand-mark">A</span>
+      <span><strong>THE APOSTLE</strong><small>CYBERSECURITY BIBLE</small></span>
+    </a>
+    <div class="top-actions">
+      <button id="themeBtn" class="icon-btn" aria-label="Toggle light or dark theme">☼</button>
+      <button id="installBtn" class="install-btn" hidden>Install app</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <p class="eyebrow">LEARN • PRACTISE • DOCUMENT</p>
+      <h1>Your cybersecurity<br><span>field reference.</span></h1>
+      <p class="hero-copy">A practical library for Linux, Bash, Windows, networking, security tools and investigation. Read it on your phone, search quickly, and keep learning even when you are offline.</p>
+      <label class="search-wrap">
+        <span aria-hidden="true">⌕</span>
+        <input id="searchInput" type="search" placeholder="Search commands, tools or topics…" autocomplete="off">
+      </label>
+      <p class="search-hint">Try: <button class="text-btn" data-search="ssh">ssh</button>, <button class="text-btn" data-search="ip addr">ip addr</button>, <button class="text-btn" data-search="Suricata">Suricata</button></p>
+    </section>
+
+    <section class="quick-stats" aria-label="Bible contents">
+      <div><strong>05</strong><span>Volumes</span></div>
+      <div><strong>01</strong><span>Searchable library</span></div>
+      <div><strong>∞</strong><span>Room to grow</span></div>
+    </section>
+
+    <section class="content-section">
+      <div class="section-heading">
+        <div><p class="eyebrow">THE LIBRARY</p><h2>Choose a volume</h2></div>
+        <span id="resultCount" class="result-count">5 volumes</span>
+      </div>
+      <div id="volumeGrid" class="volume-grid"></div>
+      <div id="emptyState" class="empty-state" hidden>
+        <strong>No matching entries found.</strong>
+        <p>Try another keyword or clear your search.</p>
+        <button id="clearSearch" class="secondary-btn">Clear search</button>
+      </div>
+    </section>
+
+    <section class="note-panel">
+      <div class="note-icon">✦</div>
+      <div>
+        <h3>Learn the command, not just the spelling.</h3>
+        <p>For each practical command, understand what it does, why you use it, the important options, and what its output tells you. Only run commands on systems you own or are authorised to test.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <strong>THE APOSTLE CYBERSECURITY BIBLE</strong>
+    <p>Built for steady learning. Keep your notes, verify your results, and practise ethically.</p>
+    <span>Version 1.0 • Personal learning edition</span>
+  </footer>
+
+  <dialog id="entryDialog" class="entry-dialog">
+    <div class="dialog-head">
+      <div><p id="dialogVolume" class="eyebrow"></p><h2 id="dialogTitle"></h2></div>
+      <button id="closeDialog" class="icon-btn" aria-label="Close">✕</button>
+    </div>
+    <div id="dialogBody" class="dialog-body"></div>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
