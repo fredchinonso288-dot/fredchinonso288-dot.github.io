@@ -1,0 +1,916 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#211348">
+<title>The Apostle Cybersecurity Academy</title>
+<style>
+:root{--bg:#f4efff;--panel:#fff;--ink:#291c43;--muted:#766987;--purple:#7540d9;--line:#e6dcf5;--green:#0b9e70}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 "Segoe UI",Arial,sans-serif}
+button,input,textarea{font:inherit}
+button{cursor:pointer}
+header{background:linear-gradient(110deg,#17102f,#5830a0);color:white;padding:20px 5%;display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap}
+header strong{font-size:19px}
+header a{color:white;text-decoration:none;border:1px solid #ffffff66;padding:8px 14px;border-radius:22px}
+.layout{max-width:1400px;margin:auto;padding:20px;display:grid;grid-template-columns:205px 1fr;gap:18px}
+nav{background:#211348;color:white;padding:14px;border-radius:17px;height:max-content;position:sticky;top:12px}
+nav a{display:block;color:#eee4ff;text-decoration:none;padding:10px;border-radius:9px;font-size:14px}
+nav a:hover{background:#7540d9}
+main{min-width:0}
+.hero{background:linear-gradient(120deg,#211348,#7540bd);color:white;border-radius:20px;padding:24px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.hero h1{font-size:clamp(27px,4vw,42px);line-height:1.15;margin:8px 0}
+.hero p{color:#eee4ff;margin:5px 0}
+.avatar{text-align:center}
+.avatar svg{width:125px;height:125px;border-radius:50%;border:4px solid #d7c4ff;background:#cdb5ff}
+.avatar strong{display:block}
+.grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:15px;margin-top:16px}
+.card{background:white;border:1px solid var(--line);border-radius:17px;padding:18px;box-shadow:0 7px 24px #39206412;min-width:0}
+.card h2{font-size:19px;margin:0 0 10px}
+.w12{grid-column:span 12}.w8{grid-column:span 8}.w7{grid-column:span 7}.w6{grid-column:span 6}.w5{grid-column:span 5}.w4{grid-column:span 4}
+.muted{color:var(--muted);font-size:14px}
+.btn{border:0;border-radius:22px;padding:10px 16px;background:var(--purple);color:white;font-weight:700;margin:4px 3px 4px 0}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.secondary{background:#eee6ff;color:#4d2a91}
+.btn.green{background:var(--green)}
+.btn.red{background:#f8e6ed;color:#9c3158}
+.ring{width:205px;height:205px;border-radius:50%;background:conic-gradient(var(--green) var(--progress,0%),#e8def8 0);display:grid;place-items:center;position:relative;flex-shrink:0}
+.ring:before{content:"";position:absolute;inset:12px;background:#211348;border-radius:50%}
+.ring div{position:relative;color:white;text-align:center}
+.time{font-size:27px;font-weight:900;font-variant-numeric:tabular-nums}
+.timer{display:flex;align-items:center;justify-content:center;gap:22px;flex-wrap:wrap}
+.stat{font-size:27px;font-weight:900}
+.bar{height:11px;background:#eee6fa;border-radius:20px;overflow:hidden;margin:8px 0}
+.bar span{display:block;height:100%;width:0;background:linear-gradient(90deg,#7540d9,#0bba87)}
+.days{display:grid;grid-template-columns:repeat(7,1fr);gap:7px}
+.day{border:1px solid var(--line);background:#faf8ff;border-radius:10px;padding:8px 3px;color:var(--ink);font-weight:700}
+.day.selected{background:var(--purple);color:white}
+.day.done{border:2px solid var(--green)}
+.day small{display:block;font-size:11px}
+.modules{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.module{padding:12px;border:1px solid var(--line);border-radius:12px;background:#fcfaff}
+.module strong{display:block}
+.module small{color:var(--muted)}
+.badges{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.badge{padding:12px;border-radius:12px;background:#f5efff;border:1px solid var(--line)}
+.badge.locked{opacity:.45;filter:grayscale(1)}
+.badge strong{display:block}
+.resource a{display:block;padding:8px 0;border-bottom:1px solid var(--line);font-weight:700;text-decoration:none;color:#6136ad}
+textarea{width:100%;min-height:100px;padding:12px;border:1px solid var(--line);border-radius:12px}
+.question{padding:12px 0;border-top:1px solid var(--line)}
+.question label{display:block;padding:4px}
+.maya{padding:14px;border-radius:13px;background:#f3ebff;border:1px solid #dfccfa}
+footer{text-align:center;padding:25px;color:var(--muted);font-size:13px}
+@media(max-width:850px){.layout{grid-template-columns:1fr;padding:12px}nav{position:static;display:flex;overflow-x:auto;gap:3px}nav a{white-space:nowrap}.w8,.w7,.w6,.w5,.w4{grid-column:span 12}.days{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:500px){.modules{grid-template-columns:1fr}.ring{width:180px;height:180px}.time{font-size:23px}}
+</style>
+</head>
+<body>
+<header>
+<div><strong>THE APOSTLE CYBERSECURITY ACADEMY</strong><br><small>Learn • Practise • Excel</small></div>
+<a href="index.html">← Cybersecurity Bible</a>
+</header>
+
+<div class="layout">
+<nav>
+<a href="#dashboard">⌂ Dashboard</a>
+<a href="#timer">◉ Study stopwatch</a>
+<a href="#timetable">▦ 14-day timetable</a>
+<a href="#rewards">🏆 Rewards and XP</a>
+<a href="#lessons">▣ Learning modules</a>
+<a href="#quiz">? Knowledge tests</a>
+<a href="#ctf">⚑ CTF challenge</a>
+<a href="#resources">↗ Official resources</a>
+<a href="#journal">✎ Study journal</a>
+</nav>
+
+<main>
+<section class="hero" id="dashboard">
+<div>
+<small>YOUR CYBERSECURITY LEARNING JOURNEY</small>
+<h1>Welcome to your Academy.</h1>
+<p>Build knowledge. Practise safely. Earn your achievements.</p>
+<p>Your personal learning companion is here to encourage your progress.</p>
+<a class="btn" href="#timetable">Open study timetable</a>
+</div>
+<div class="avatar">
+<svg viewBox="0 0 160 160" role="img"
+aria-label="Maya, mature glamorous illustrated AI mentor"
+xmlns="http://www.w3.org/2000/svg">
+<defs>
+ <linearGradient id="mayaPurpleBg" x2="1" y2="1">
+  <stop stop-color="#f1ddff"/>
+  <stop offset="1" stop-color="#8556c5"/>
+ </linearGradient>
+ <linearGradient id="mayaSkinNew" x2="1" y2="1">
+  <stop stop-color="#bd795b"/>
+  <stop offset="1" stop-color="#70402f"/>
+ </linearGradient>
+ <linearGradient id="mayaHairNew" x2="1" y2="1">
+  <stop stop-color="#392238"/>
+  <stop offset="1" stop-color="#130d19"/>
+ </linearGradient>
+ <linearGradient id="mayaBikini" x2="1" y2="1">
+  <stop stop-color="#c18be9"/>
+  <stop offset=".5" stop-color="#753ca8"/>
+  <stop offset="1" stop-color="#44205f"/>
+ </linearGradient>
+</defs>
+
+<!-- Background -->
+<circle cx="80" cy="80" r="79" fill="url(#mayaPurpleBg)"/>
+<circle cx="80" cy="80" r="69" fill="none"
+ stroke="#fff" opacity=".45" stroke-width="1.5"/>
+
+<!-- Hair behind body -->
+<path d="M31 74Q21 17 75 10Q131 7 130 72L139 143
+ Q115 157 43 147L24 119Z" fill="url(#mayaHairNew)"/>
+
+<!-- Curvy shoulders and upper body -->
+<path d="M9 160Q13 119 43 112
+ Q56 106 65 105L95 105Q107 106 119 112
+ Q148 123 152 160Z" fill="url(#mayaSkinNew)"/>
+
+<!-- Neck -->
+<path d="M65 87L64 111Q80 124 96 111L95 87Z"
+ fill="url(#mayaSkinNew)"/>
+
+<!-- Face -->
+<path d="M46 48Q45 22 80 21Q116 23 115 53
+ L109 83Q101 105 80 108Q58 104 50 83Z"
+ fill="url(#mayaSkinNew)"/>
+
+<!-- Hair framing face -->
+<path d="M43 66Q29 25 60 13Q99 -4 120 30
+ Q132 52 116 85L109 51
+ Q93 49 82 34Q68 52 47 54Z"
+ fill="url(#mayaHairNew)"/>
+<path d="M44 52Q31 77 47 108Q26 96 29 65Z"
+ fill="#211321"/>
+<path d="M115 49Q132 76 112 108Q135 96 130 65Z"
+ fill="#211321"/>
+
+<!-- Eyes and brows -->
+<path d="M57 66Q65 61 74 66M87 66Q96 61 104 66"
+ fill="none" stroke="#482a24" stroke-width="2.5"
+ stroke-linecap="round"/>
+<path d="M59 75Q66 80 74 75M87 75Q95 80 102 75"
+ fill="none" stroke="#271720" stroke-width="2.2"
+ stroke-linecap="round"/>
+
+<!-- Nose and smile -->
+<path d="M80 73L76 84Q80 88 84 84"
+ fill="none" stroke="#75402f" stroke-width="1.6"/>
+<path d="M68 94Q80 102 93 94"
+ fill="none" stroke="#672b38" stroke-width="2.5"
+ stroke-linecap="round"/>
+<path d="M73 95Q81 98 89 95"
+ fill="none" stroke="#e9aaa4" stroke-width="2"/>
+
+<!-- Earrings -->
+<circle cx="47" cy="87" r="3" fill="#f4d28c"/>
+<circle cx="113" cy="87" r="3" fill="#f4d28c"/>
+
+<!-- Bikini top: tasteful fashion illustration -->
+<path d="M43 117Q54 109 66 112
+ Q74 115 80 126Q87 115 95 112
+ Q108 109 118 117L128 160H32Z"
+ fill="url(#mayaBikini)"/>
+
+<!-- Bikini cups -->
+<path d="M48 117Q57 108 69 116
+ Q77 124 79 143Q63 151 47 137Z"
+ fill="#9a5bc6" stroke="#e2baff" stroke-width="1.5"/>
+<path d="M112 117Q103 108 91 116
+ Q83 124 81 143Q97 151 113 137Z"
+ fill="#9a5bc6" stroke="#e2baff" stroke-width="1.5"/>
+
+<!-- Bikini straps -->
+<path d="M55 114L49 99M105 114L111 99"
+ stroke="#d7a9f5" stroke-width="4" stroke-linecap="round"/>
+
+<!-- Centre detail -->
+<path d="M76 135Q80 130 84 135"
+ fill="none" stroke="#f2d7ff" stroke-width="2"/>
+<circle cx="80" cy="136" r="2.5" fill="#f3d49b"/>
+
+<!-- Soft highlights -->
+<path d="M55 24Q72 8 94 20"
+ fill="none" stroke="#77516d" stroke-width="3"
+ stroke-linecap="round"/>
+</svg>
+<strong>Maya 💜</strong>
+<small>Your AI learning assistant</small>
+</div>
+</section>
+
+<div class="grid">
+<section class="card w8" id="timer">
+<h2>◉ Your circular 14-hour stopwatch</h2>
+<p class="muted">Start when you study. Pause for breaks. Your recorded time is saved in this browser.</p>
+<div class="timer">
+<div class="ring" id="ring"><div><span class="time" id="clock">00:00:00</span><br><small>of 14 hours</small></div></div>
+<div>
+<div class="stat" id="weekly">0h 0m</div>
+<div class="muted">This week's study time</div>
+<div class="bar"><span id="progress"></span></div>
+<p id="timerMessage">Ready when you are.</p>
+<button class="btn green" id="start">▶ Start</button>
+<button class="btn secondary" id="pause">Ⅱ Pause</button>
+<button class="btn red" id="reset">Reset week</button>
+</div>
+</div>
+</section>
+
+<section class="card w4">
+<h2>Maya's encouragement</h2>
+<div class="maya"><strong>One focused session at a time.</strong><p>Don't memorise commands blindly. Understand what they do, practise in your lab, and document what you observe.</p></div>
+<p class="muted">Your progress is stored on this device. Export a backup regularly.</p>
+<button class="btn" id="export">Export progress backup</button>
+</section>
+
+<section class="card w12" id="timetable">
+<h2>▦ Your repeating 14-day timetable</h2>
+<p class="muted">Daily structure: 45 minutes learning, 55 minutes practical work, 20 minutes testing and documentation. Mark a day complete only after doing the work.</p>
+<div class="days" id="days"></div>
+<div class="maya" style="margin-top:13px">
+<strong id="dayTitle">Day 1 — Cybersecurity foundations</strong>
+<p id="dayDetail"></p>
+<p><strong>Practical assignment:</strong> <span id="dayPractice"></span></p>
+<button class="btn green" id="completeDay">✓ Mark this day complete (+100 XP)</button>
+<p id="dayMessage" class="muted"></p>
+</div>
+</section>
+
+<section class="card w6" id="rewards">
+<h2>🏆 Your XP rewards and level</h2>
+<div class="stat" id="xp">0 XP</div>
+<p id="level">Level 1 — Cybersecurity Beginner</p>
+<div class="bar"><span id="xpBar"></span></div>
+<p id="nextLevel" class="muted"></p>
+<h3>Achievement hall</h3>
+<div class="badges" id="badges"></div>
+</section>
+
+<section class="card w6" id="lessons">
+<h2>▣ Your learning modules</h2>
+<div class="modules">
+<div class="module"><strong>🪟 Windows CMD</strong><small>Files, processes, services, IP configuration and troubleshooting.</small></div>
+<div class="module"><strong>⌨️ PowerShell</strong><small>Cmdlets, pipelines, objects, scripting and event logs.</small></div>
+<div class="module"><strong>🐧 Ubuntu and Kali Linux</strong><small>Files, users, permissions, packages and services.</small></div>
+<div class="module"><strong>🔴 Red Hat Linux</strong><small>dnf, rpm, systemctl, SELinux, firewalld and nmcli.</small></div>
+<div class="module"><strong>🌐 Networking</strong><small>OSI, TCP/IP, subnetting, DNS, DHCP, ports and routing.</small></div>
+<div class="module"><strong>📡 Traffic analysis</strong><small>Wireshark, tcpdump, packet headers and protocols.</small></div>
+<div class="module"><strong>🛡️ Web security</strong><small>Burp Suite, HTTP, cookies, sessions and authentication.</small></div>
+<div class="module"><strong>🔎 Defensive tools</strong><small>Nmap, Suricata, Snort, IDS/IPS and alert analysis.</small></div>
+<div class="module"><strong>🖥️ SOC operations</strong><small>SIEM, triage, incident response and investigation.</small></div>
+<div class="module"><strong>🧾 Digital forensics</strong><small>Evidence, hashes, metadata and timelines.</small></div>
+<div class="module"><strong>🐍 Python and Git</strong><small>Automation, scripting, GitHub and documentation.</small></div>
+<div class="module"><strong>☁️ Cloud and DevSecOps</strong><small>Cloud foundations, secure pipelines and deployment.</small></div>
+</div>
+</section>
+
+<section class="card w6" id="quiz">
+<h2>? Knowledge check</h2>
+<p class="muted">Original practice questions, not official CompTIA exam questions. Earn 10 XP per correct answer, once per question.</p>
+<div class="question"><strong>1. Which protocol translates domain names into IP addresses?</strong>
+<label><input type="radio" name="q1" value="a"> FTP</label>
+<label><input type="radio" name="q1" value="b"> DNS</label>
+<label><input type="radio" name="q1" value="c"> SSH</label></div>
+<div class="question"><strong>2. Which PowerShell cmdlet lists files and folders?</strong>
+<label><input type="radio" name="q2" value="a"> Get-ChildItem</label>
+<label><input type="radio" name="q2" value="b"> Get-OnlyFiles</label>
+<label><input type="radio" name="q2" value="c"> Show-Files</label></div>
+<div class="question"><strong>3. What is the main purpose of an IDS?</strong>
+<label><input type="radio" name="q3" value="a"> Replace an operating system</label>
+<label><input type="radio" name="q3" value="b"> Encrypt all files</label>
+<label><input type="radio" name="q3" value="c"> Detect and alert on suspicious activity</label></div>
+<button class="btn" id="grade">Check answers</button>
+<p id="quizResult" aria-live="polite"></p>
+</section>
+
+<section class="card w6" id="ctf">
+<h2>⚑ CTF practice challenge</h2>
+<p><strong>Beginner networking challenge: Read the connection.</strong></p>
+<p>A lab computer connects to a web server at <code>192.0.2.20</code> on TCP destination port <code>443</code>. You observe a completed TCP three-way handshake.</p>
+<p>Identify the transport protocol, likely service and the three handshake flags in order. Explain what each flag does.</p>
+<p class="muted">Hint: SYN, SYN-ACK, ACK. This is a learning scenario; practise only in authorised labs.</p>
+<textarea id="ctfNotes" placeholder="Write your reasoning here..."></textarea>
+<button class="btn" id="saveCtf">Save challenge notes</button>
+<button class="btn green" id="finishCtf">Mark CTF completed (+50 XP)</button>
+<p id="ctfMessage" class="muted"></p>
+</section>
+
+<section class="card w6" id="resources">
+<h2>↗ Official learning resources</h2>
+<div class="resource">
+<a href="https://www.netacad.com/" target="_blank" rel="noopener">Cisco Networking Academy ↗</a>
+<a href="https://skillsforall.com/" target="_blank" rel="noopener">Cisco Skills for All ↗</a>
+<a href="https://tryhackme.com/" target="_blank" rel="noopener">TryHackMe ↗</a>
+<a href="https://www.comptia.org/certifications" target="_blank" rel="noopener">CompTIA certifications ↗</a>
+<a href="https://learn.microsoft.com/powershell/" target="_blank" rel="noopener">Microsoft PowerShell documentation ↗</a>
+<a href="https://docs.redhat.com/" target="_blank" rel="noopener">Red Hat documentation ↗</a>
+<a href="https://portswigger.net/web-security" target="_blank" rel="noopener">PortSwigger Web Security Academy ↗</a>
+<a href="https://www.wireshark.org/docs/" target="_blank" rel="noopener">Wireshark documentation ↗</a>
+<a href="https://docs.python.org/3/" target="_blank" rel="noopener">Python documentation ↗</a>
+<a href="https://picoctf.org/" target="_blank" rel="noopener">picoCTF ↗</a>
+<a href="https://overthewire.org/wargames/" target="_blank" rel="noopener">OverTheWire ↗</a>
+</div>
+</section>
+
+<section class="card w12" id="journal">
+<h2>✎ Your learning journal</h2>
+<p class="muted">Record what you studied, what you practised, what happened and what you need to investigate next.</p>
+<textarea id="notes" placeholder="My learning notes..."></textarea>
+<button class="btn" id="saveNotes">Save notes</button>
+<span id="notesMessage" class="muted"></span>
+</section>
+</div>
+<footer>The Apostle Cybersecurity Academy • Learn ethically. Practise safely. Document honestly.<br>Study data is stored in this browser. Export a backup to preserve it.</footer>
+</main>
+</div>
+
+<script>
+(() => {
+"use strict";
+const $ = id => document.getElementById(id);
+const STORE = "apostleAcademy_v2";
+const NOTE = "apostleAcademyJournal_v2";
+const TARGET = 14 * 60 * 60 * 1000;
+
+const curriculum = [
+["Cybersecurity foundations","Understand confidentiality, integrity, availability, operating systems, accounts and the security analyst's role.","Inspect Windows System Information. Identify your OS version and explain the CIA triad."],
+["Windows CMD","Learn navigation, files, processes, services, IP configuration and network troubleshooting.","Practise whoami, hostname, ipconfig /all, ping and tracert."],
+["PowerShell","Understand cmdlets, objects, pipelines, variables, help and safe scripts.","Practise Get-Help, Get-Location, Get-ChildItem and Get-Process."],
+["Linux fundamentals","Learn the filesystem, users, groups, permissions, processes and package management.","Practise pwd, ls, cd, cat, grep, chmod and sudo in your own VM."],
+["Red Hat administration","Explore dnf, rpm, systemctl, journalctl, nmcli, firewalld and SELinux.","Inspect the OS release and a service's status in your lab."],
+["Networking foundations","Study OSI, TCP/IP, IPv4, subnet masks, gateways, MAC addresses and routing.","Draw a lab network diagram and calculate a small subnet."],
+["Protocols and services","Understand DNS, DHCP, HTTP/S, SSH, SMTP, TCP, UDP and common ports.","Use nslookup or Resolve-DnsName and interpret the result."],
+["Packet analysis","Read packet headers, TCP handshakes, DNS queries and HTTP exchanges.","Open an authorised capture in Wireshark and apply a display filter."],
+["Web security and Burp Suite","Learn requests, responses, cookies, sessions, authentication and web risks.","Use PortSwigger's legal training labs and inspect a test request."],
+["Network security tools","Study Nmap, Suricata, Snort, IDS/IPS rules, alerts and defensive scanning.","Review your own Suricata logs and explain a test event."],
+["SOC analyst practice","Learn alert triage, event logs, SIEM concepts, indicators and incident response.","Write an incident timeline from a lab event."],
+["Digital forensics","Study evidence integrity, hashes, metadata, timelines and safe evidence handling.","Calculate a file hash and explain why integrity matters."],
+["Python, Git and cloud","Practise Python basics, Git commits, GitHub documentation and cloud security.","Write a small Python script and document it in Git."],
+["CTF and review","Consolidate learning with beginner CTF tasks and certification-style revision.","Attempt a beginner CTF challenge before looking at hints."]
+];
+
+const levels = [
+["Cybersecurity Beginner",0],
+["Junior Defender",500],
+["Security Practitioner",1500],
+["SOC Analyst in Training",3500],
+["Cybersecurity Specialist",7000]
+];
+
+const monday = () => {
+ const d = new Date();
+ d.setHours(0,0,0,0);
+ d.setDate(d.getDate() - ((d.getDay()+6)%7));
+ return d.toISOString().slice(0,10);
+};
+const today = () => {
+ const d = new Date();
+ return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+};
+const fresh = () => ({
+ xp:0,completed:[],quizAwards:[],ctfDone:false,weeklyBonus:[],
+ week:monday(),entries:{},runningSince:null,activeDate:null
+});
+let data;
+try { data = JSON.parse(localStorage.getItem(STORE)) || fresh(); }
+catch { data = fresh(); }
+if (!data.entries) data = fresh();
+if (!data.completed) data.completed=[];
+if (!data.quizAwards) data.quizAwards=[];
+if (!data.weeklyBonus) data.weeklyBonus=[];
+if (!data.entries) data.entries={};
+function save(){localStorage.setItem(STORE,JSON.stringify(data));}
+function award(points){data.xp+=points;save();renderRewards();}
+function currentWeek(){return monday();}
+function totalTime(){
+ return Object.values(data.entries).reduce((a,b)=>a+b,0) +
+ (data.runningSince ? Math.max(0,Date.now()-data.runningSince) : 0);
+}
+function format(ms){
+ let s=Math.floor(ms/1000),h=Math.floor(s/3600),m=Math.floor(s%3600/60),sec=s%60;
+ return [h,m,sec].map(x=>String(x).padStart(2,"0")).join(":");
+}
+function renderTimer(){
+ if(data.week!==currentWeek()){
+  data.week=currentWeek();
+  data.entries={};
+  data.weeklyBonus=[];
+  save();
+ }
+ const total=totalTime(),pct=Math.min(100,total/TARGET*100);
+ $("clock").textContent=format(total);
+ $("weekly").textContent=Math.floor(total/3600000)+"h "+Math.floor(total%3600000/60000)+"m";
+ $("progress").style.width=pct+"%";
+ $("ring").style.setProperty("--progress",pct+"%");
+ $("timerMessage").textContent=total>=TARGET?"Weekly target achieved! +200 XP bonus available.":"You have completed "+Math.floor(pct)+"% of your weekly target.";
+ $("start").disabled=!!data.runningSince;
+ $("pause").disabled=!data.runningSince;
+ if(total>=TARGET && !data.weeklyBonus.includes(data.week)){
+  data.weeklyBonus.push(data.week);
+  data.xp+=200;
+  save();
+  renderRewards();
+  $("timerMessage").textContent="Weekly target achieved! +200 XP awarded. Excellent work!";
+ }
+}
+$("start").onclick=()=>{
+ if(!data.runningSince){
+  data.runningSince=Date.now();
+  data.activeDate=today();
+  save();renderTimer();
+ }
+};
+$("pause").onclick=()=>{
+ if(data.runningSince){
+  const elapsed=Math.max(0,Date.now()-data.runningSince);
+  const key=data.activeDate||today();
+  data.entries[key]=(data.entries[key]||0)+elapsed;
+  data.runningSince=null;data.activeDate=null;
+  save();renderTimer();
+ }
+};
+$("reset").onclick=()=>{
+ if(confirm("Reset this week's study time? Your XP and achievements will remain.")){
+  data.entries={};data.runningSince=null;data.activeDate=null;
+  data.week=currentWeek();data.weeklyBonus=[];
+  save();renderTimer();
+ }
+};
+setInterval(renderTimer,1000);
+renderTimer();
+
+function renderRewards(){
+ const xp=data.xp;
+ let level=0;
+ for(let i=0;i<levels.length;i++)if(xp>=levels[i][1])level=i;
+ const base=levels[level][1],next=levels[level+1]?.[1]??base;
+ $("xp").textContent=xp.toLocaleString()+" XP";
+ $("level").textContent="Level "+(level+1)+" — "+levels[level][0];
+ $("nextLevel").textContent=level===levels.length-1?"Highest current Academy level achieved!":(next-xp)+" XP to next level.";
+ $("xpBar").style.width=level===levels.length-1?"100%":Math.min(100,(xp-base)/(next-base)*100)+"%";
+ const allDays=data.completed.length;
+ const badges=[
+  ["🌱","First steps",allDays>=1],
+  ["📚","Seven-day learner",allDays>=7],
+  ["🏆","14-day discipline",allDays>=14],
+  ["🔥","14-hour champion",data.weeklyBonus.length>0],
+  ["🧠","Quiz master",data.quizAwards.length>=3],
+  ["🛡️","CTF problem solver",data.ctfDone]
+ ];
+ $("badges").innerHTML="";
+ badges.forEach(b=>{
+  const el=document.createElement("div");
+  el.className="badge"+(b[2]?"":" locked");
+  el.innerHTML="<strong>"+b[0]+" "+b[1]+"</strong><small>"+(b[2]?"Unlocked":"Not yet earned")+"</small>";
+  $("badges").appendChild(el);
+ });
+}
+renderRewards();
+
+let selectedDay=0;
+const dayBox=$("days");
+curriculum.forEach((day,i)=>{
+ const b=document.createElement("button");
+ b.className="day";
+ b.innerHTML="Day "+(i+1)+"<small>"+(data.completed.includes(i)?"✓ Complete":"Study")+"</small>";
+ b.onclick=()=>{
+  selectedDay=i;
+  document.querySelectorAll(".day").forEach(x=>x.classList.remove("selected"));
+  b.classList.add("selected");
+  showDay();
+ };
+ dayBox.appendChild(b);
+});
+function showDay(){
+ const d=curriculum[selectedDay];
+ $("dayTitle").textContent="Day "+(selectedDay+1)+" — "+d[0];
+ $("dayDetail").textContent=d[1];
+ $("dayPractice").textContent=d[2];
+ const done=data.completed.includes(selectedDay);
+ $("completeDay").disabled=done;
+ $("completeDay").textContent=done?"✓ Day completed":"✓ Mark this day complete (+100 XP)";
+ $("dayMessage").textContent=done?"This day is already recorded in your current 14-day cycle.":"Complete the learning and practical work before claiming your points.";
+}
+showDay();
+$("completeDay").onclick=()=>{
+ if(data.completed.includes(selectedDay))return;
+ data.completed.push(selectedDay);
+ award(100);
+ if(data.completed.length===14){
+  award(500);
+  $("dayMessage").textContent="14-day cycle completed! +100 XP and +500 XP cycle bonus awarded.";
+ }else{
+  $("dayMessage").textContent="Day completed! +100 XP awarded.";
+ }
+ showDay();
+ [...dayBox.children].forEach((b,i)=>{
+  b.classList.toggle("done",data.completed.includes(i));
+  b.innerHTML="Day "+(i+1)+"<small>"+(data.completed.includes(i)?"✓ Complete":"Study")+"</small>";
+ });
+};
+if(data.completed.length===14){
+ $("dayMessage").textContent="Your 14-day cycle is complete. Begin another cycle when ready.";
+}
+
+const answers={q1:"b",q2:"a",q3:"c"};
+$("grade").onclick=()=>{
+ let score=0,earned=0;
+ Object.entries(answers).forEach(([q,correct])=>{
+  const chosen=document.querySelector('input[name="'+q+'"]:checked');
+  if(chosen&&chosen.value===correct){
+   score++;
+   if(!data.quizAwards.includes(q)){data.quizAwards.push(q);earned+=10;}
+  }
+ });
+ if(earned)award(earned);
+ $("quizResult").textContent="Score: "+score+"/3. New XP earned: "+earned+". "+(score===3?"Excellent work!":"Review the topics and try again.");
+};
+
+$("saveCtf").onclick=()=>{
+ localStorage.setItem("apostleAcademyCtfNotes",$("ctfNotes").value);
+ $("ctfMessage").textContent="Your challenge notes have been saved.";
+};
+$("ctfNotes").value=localStorage.getItem("apostleAcademyCtfNotes")||"";
+$("finishCtf").onclick=()=>{
+ if(data.ctfDone){$("ctfMessage").textContent="CTF reward already claimed.";return;}
+ if($("ctfNotes").value.trim().length<30){
+  $("ctfMessage").textContent="First write your reasoning in the notes box. Explain the handshake.";
+  return;
+ }
+ data.ctfDone=true;
+ award(50);
+ $("ctfMessage").textContent="CTF completion recorded. +50 XP awarded. Keep your reasoning for review.";
+};
+
+$("notes").value=localStorage.getItem(NOTE)||"";
+$("saveNotes").onclick=()=>{
+ localStorage.setItem(NOTE,$("notes").value);
+ $("notesMessage").textContent="Notes saved on this device.";
+};
+
+$("export").onclick=()=>{
+ if(data.runningSince){
+  const elapsed=Math.max(0,Date.now()-data.runningSince);
+  const key=data.activeDate||today();
+  data.entries[key]=(data.entries[key]||0)+elapsed;
+  data.runningSince=null;data.activeDate=null;save();renderTimer();
+ }
+ const backup={exportedAt:new Date().toISOString(),academy:data,journal:localStorage.getItem(NOTE)||"",ctfNotes:localStorage.getItem("apostleAcademyCtfNotes")||""};
+ const blob=new Blob([JSON.stringify(backup,null,2)],{type:"application/json"});
+ const a=document.createElement("a");
+ a.href=URL.createObjectURL(blob);
+ a.download="apostle-academy-backup.json";
+ a.click();
+ URL.revokeObjectURL(a.href);
+};
+})();
+</script>
+<!-- APOSTLE_MAYA_STUDIO_V1 -->
+<style>
+#mayaStudio{margin:24px auto;padding:20px;background:#fff;border:1px solid #dfd0f3;border-radius:19px;box-shadow:0 8px 25px #39206412;color:#302044}
+#mayaStudio h2{margin:0 0 8px}
+#mayaStudio .maya-help{color:#756783;font-size:13px;line-height:1.6}
+#mayaStudio .maya-controls{display:flex;gap:9px;flex-wrap:wrap;margin:13px 0}
+#mayaStudio button{border:0;border-radius:10px;padding:10px 14px;background:#7040a5;color:white;cursor:pointer;font-weight:700}
+#mayaStudio button.secondary{background:#eee5f8;color:#4c286f}
+#mayaStudio button.danger{background:#f8e8ec;color:#8b2940}
+#mayaStudio button:focus,#mayaStudio input:focus{outline:3px solid #c8a7ed;outline-offset:2px}
+#mayaStudio .maya-paste{padding:17px;border:2px dashed #b99bd9;border-radius:13px;background:#faf7ff;text-align:center;margin:12px 0}
+#mayaStudio .maya-gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(125px,1fr));gap:12px;margin-top:16px}
+#mayaStudio .maya-tile{border:1px solid #e6dcef;border-radius:12px;padding:9px;min-width:0}
+#mayaStudio .maya-tile img{width:100%;height:125px;object-fit:cover;border-radius:9px;background:#eee5f8}
+#mayaStudio .maya-tile p{font-size:12px;overflow-wrap:anywhere}
+#mayaStudio .maya-tile button{font-size:11px;padding:7px;margin:3px 2px}
+#mayaStudio .maya-status{font-size:13px;color:#61358d;min-height:22px;margin-top:10px}
+#mayaStudio .maya-current{display:flex;align-items:center;gap:14px;margin:15px 0;padding:12px;background:#f5effb;border-radius:13px}
+#mayaStudio .maya-current img{width:78px;height:78px;object-fit:cover;border-radius:50%;border:3px solid #c5a2e9}
+#mayaStudio input[type=file]{max-width:100%;margin:8px 0}
+@media(max-width:500px){#mayaStudio{padding:14px}#mayaStudio .maya-controls button{flex:1}}
+</style>
+
+<section id="mayaStudio">
+ <h2>💜 Maya Avatar Studio</h2>
+ <p class="maya-help">
+   Your personal Maya image gallery. Upload pictures from your computer,
+   paste pictures from your clipboard, choose your favourite or let Maya
+   surprise you with a random appearance.
+ </p>
+
+ <div class="maya-current">
+  <img id="mayaStudioPreview" alt="Current Maya avatar"
+       src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='50' fill='%23d9c2f4'/%3E%3Ctext x='50' y='62' text-anchor='middle' font-size='38'%3EM%3C/text%3E%3C/svg%3E">
+  <div><strong>Current Maya</strong><div class="maya-help" id="mayaCurrentName">Original illustration</div></div>
+ </div>
+
+ <label for="mayaUpload"><strong>Upload pictures</strong></label><br>
+ <input type="file" id="mayaUpload" accept="image/*" multiple>
+
+ <div class="maya-paste" id="mayaPaste" tabindex="0">
+  <strong>📋 Paste an image here</strong>
+  <p class="maya-help">Click this area and press Ctrl + V after copying an image.</p>
+ </div>
+
+ <div class="maya-controls">
+  <button id="mayaRandom">🎲 Random Maya</button>
+  <button id="mayaExport" class="secondary">Export selected image</button>
+ </div>
+
+ <p class="maya-help">
+   Your gallery is saved in this browser on this device. Export an image
+   when you want to add it permanently to your GitHub website.
+ </p>
+
+ <h3>Your Maya Gallery</h3>
+ <div id="mayaGallery" class="maya-gallery"></div>
+ <div id="mayaStatus" class="maya-status" aria-live="polite"></div>
+</section>
+
+<script>
+(function(){
+ "use strict";
+
+ const DB_NAME="apostleMayaStudio";
+ const DB_VERSION=1;
+ const MAX_SIZE=8*1024*1024;
+ const $=id=>document.getElementById(id);
+
+ const upload=$("mayaUpload");
+ const paste=$("mayaPaste");
+ const gallery=$("mayaGallery");
+ const status=$("mayaStatus");
+ const preview=$("mayaStudioPreview");
+ const currentName=$("mayaCurrentName");
+
+ let db=null;
+ let selectedId=null;
+ let previewURL=null;
+ let tileURLs=[];
+
+ function say(message){status.textContent=message;}
+
+ function openDatabase(){
+  return new Promise((resolve,reject)=>{
+   const request=indexedDB.open(DB_NAME,DB_VERSION);
+   request.onupgradeneeded=()=>{
+    const database=request.result;
+    if(!database.objectStoreNames.contains("images"))
+     database.createObjectStore("images",{keyPath:"id"});
+    if(!database.objectStoreNames.contains("settings"))
+     database.createObjectStore("settings",{keyPath:"key"});
+   };
+   request.onsuccess=()=>resolve(request.result);
+   request.onerror=()=>reject(request.error);
+  });
+ }
+
+ function requestResult(request){
+  return new Promise((resolve,reject)=>{
+   request.onsuccess=()=>resolve(request.result);
+   request.onerror=()=>reject(request.error);
+  });
+ }
+
+ function getAll(){
+  return requestResult(db.transaction("images","readonly")
+   .objectStore("images").getAll());
+ }
+
+ function getImage(id){
+  return requestResult(db.transaction("images","readonly")
+   .objectStore("images").get(id));
+ }
+
+ async function saveImage(file){
+  if(!file || !file.type || !file.type.startsWith("image/")){
+   say("Please choose a valid image.");
+   return;
+  }
+  if(file.size>MAX_SIZE){
+   say("That image is larger than 8 MB. Please choose a smaller image.");
+   return;
+  }
+
+  const record={
+   id:crypto.randomUUID(),
+   name:(file.name||"Pasted Maya image").slice(0,100),
+   type:file.type,
+   blob:file,
+   created:Date.now()
+  };
+
+  await requestResult(
+   db.transaction("images","readwrite").objectStore("images").add(record)
+  );
+
+  await choose(record.id);
+  await renderGallery();
+  say("Image added to your Maya gallery.");
+ }
+
+ async function choose(id){
+  const record=await getImage(id);
+  if(!record)return;
+
+  selectedId=id;
+
+  await requestResult(
+   db.transaction("settings","readwrite")
+    .objectStore("settings")
+    .put({key:"selected",value:id})
+  );
+
+  if(previewURL)URL.revokeObjectURL(previewURL);
+  previewURL=URL.createObjectURL(record.blob);
+  preview.src=previewURL;
+  currentName.textContent=record.name;
+
+  const original=document.querySelector(".avatar svg");
+  if(original)original.style.display="none";
+
+  let mainImage=document.getElementById("mayaChosenImage");
+  if(!mainImage){
+   mainImage=document.createElement("img");
+   mainImage.id="mayaChosenImage";
+   mainImage.alt="Selected Maya avatar";
+   mainImage.style.cssText="width:125px;height:125px;object-fit:cover;border-radius:50%;border:4px solid #d7c4ff";
+   const avatar=document.querySelector(".avatar");
+   if(avatar)avatar.insertBefore(mainImage,avatar.firstChild);
+  }
+  mainImage.src=previewURL;
+
+  await renderGallery();
+ }
+
+ async function renderGallery(){
+  tileURLs.forEach(url=>URL.revokeObjectURL(url));
+  tileURLs=[];
+  gallery.replaceChildren();
+
+  const records=await getAll();
+
+  if(records.length===0){
+   gallery.textContent="No pictures yet. Upload or paste your first Maya image.";
+   return;
+  }
+
+  records.sort((a,b)=>b.created-a.created);
+
+  records.forEach(record=>{
+   const tile=document.createElement("div");
+   tile.className="maya-tile";
+
+   const image=document.createElement("img");
+   const url=URL.createObjectURL(record.blob);
+   tileURLs.push(url);
+   image.src=url;
+   image.alt=record.name;
+
+   const name=document.createElement("p");
+   name.textContent=record.name+(record.id===selectedId?" ✓ Current":"");
+
+   const use=document.createElement("button");
+   use.textContent="Use Maya";
+   use.onclick=()=>choose(record.id);
+
+   const remove=document.createElement("button");
+   remove.textContent="Remove";
+   remove.className="danger";
+   remove.onclick=()=>removeImage(record.id);
+
+   tile.append(image,name,use,remove);
+   gallery.appendChild(tile);
+  });
+ }
+
+ async function removeImage(id){
+  if(!confirm("Remove this picture from your Maya gallery?"))return;
+
+  await requestResult(
+   db.transaction("images","readwrite").objectStore("images").delete(id)
+  );
+
+  if(selectedId===id){
+   selectedId=null;
+   await requestResult(
+    db.transaction("settings","readwrite")
+     .objectStore("settings").delete("selected")
+   );
+
+   if(previewURL)URL.revokeObjectURL(previewURL);
+   previewURL=null;
+
+   const original=document.querySelector(".avatar svg");
+   if(original)original.style.display="";
+
+   const mainImage=document.getElementById("mayaChosenImage");
+   if(mainImage)mainImage.remove();
+
+   preview.removeAttribute("src");
+   currentName.textContent="Original illustration";
+  }
+
+  await renderGallery();
+  say("Picture removed.");
+ }
+
+ upload.addEventListener("change",async()=>{
+  for(const file of Array.from(upload.files||[])){
+   try{await saveImage(file);}
+   catch(error){say("Could not save image: "+error.message);}
+  }
+  upload.value="";
+ });
+
+ paste.addEventListener("paste",async event=>{
+  const items=Array.from(event.clipboardData.items||[]);
+  const imageItem=items.find(item=>item.type.startsWith("image/"));
+
+  if(!imageItem){
+   say("No image found on the clipboard. Copy an image first.");
+   return;
+  }
+
+  event.preventDefault();
+  try{
+   const file=imageItem.getAsFile();
+   await saveImage(file);
+  }catch(error){
+   say("Could not paste image: "+error.message);
+  }
+ });
+
+ $("mayaRandom").onclick=async()=>{
+  const records=await getAll();
+
+  if(records.length===0){
+   say("Add some pictures before using Random Maya.");
+   return;
+  }
+
+  let choices=records.filter(record=>record.id!==selectedId);
+  if(choices.length===0)choices=records;
+
+  const choice=choices[Math.floor(Math.random()*choices.length)];
+  await choose(choice.id);
+  say("Maya has a new look!");
+ };
+
+ $("mayaExport").onclick=async()=>{
+  if(!selectedId){
+   say("Choose an image from your gallery first.");
+   return;
+  }
+
+  const record=await getImage(selectedId);
+  if(!record)return;
+
+  const url=URL.createObjectURL(record.blob);
+  const extension=record.type==="image/jpeg"?"jpg":
+   record.type==="image/webp"?"webp":
+   record.type==="image/gif"?"gif":"png";
+
+  const link=document.createElement("a");
+  link.href=url;
+  link.download="maya-avatar."+extension;
+  link.click();
+
+  setTimeout(()=>URL.revokeObjectURL(url),2000);
+  say("Avatar exported. You can now place it in your website assets folder.");
+ };
+
+ async function start(){
+  if(!window.indexedDB){
+   say("This browser does not support the gallery storage feature.");
+   return;
+  }
+
+  db=await openDatabase();
+
+  const setting=await requestResult(
+   db.transaction("settings","readonly")
+    .objectStore("settings").get("selected")
+  );
+
+  await renderGallery();
+
+  if(setting && setting.value){
+   try{await choose(setting.value);}
+   catch(error){say("Your saved picture could not be loaded.");}
+  }
+ }
+
+ start().catch(error=>{
+  say("Maya Studio could not start: "+error.message);
+ });
+})();
+</script>
+<!-- END APOSTLE_MAYA_STUDIO_V1 -->
+</body>
+</html>
