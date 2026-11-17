@@ -1,9 +1,10 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#211348">
+<link rel="manifest" href="./manifest.webmanifest">
 <title>The Apostle Cybersecurity Academy</title>
 <style>
 :root{--bg:#f4efff;--panel:#fff;--ink:#291c43;--muted:#766987;--purple:#7540d9;--line:#e6dcf5;--green:#0b9e70}
@@ -68,21 +69,21 @@ footer{text-align:center;padding:25px;color:var(--muted);font-size:13px}
 </head>
 <body>
 <header>
-<div><strong>THE APOSTLE CYBERSECURITY ACADEMY</strong><br><small>Learn • Practise • Excel</small></div>
-<a href="index.html">← Cybersecurity Bible</a>
+<div><strong>THE APOSTLE CYBERSECURITY ACADEMY</strong><br><small>Learn â€¢ Practise â€¢ Excel</small></div>
+<a href="index.html">â† Cybersecurity Bible</a>
 </header>
 
 <div class="layout">
 <nav>
-<a href="#dashboard">⌂ Dashboard</a>
-<a href="#timer">◉ Study stopwatch</a>
-<a href="#timetable">▦ 14-day timetable</a>
-<a href="#rewards">🏆 Rewards and XP</a>
-<a href="#lessons">▣ Learning modules</a>
+<a href="#dashboard">âŒ‚ Dashboard</a>
+<a href="#timer">â—‰ Study stopwatch</a>
+<a href="#timetable">â–¦ 14-day timetable</a>
+<a href="#rewards">ðŸ† Rewards and XP</a>
+<a href="#lessons">â–£ Learning modules</a>
 <a href="#quiz">? Knowledge tests</a>
-<a href="#ctf">⚑ CTF challenge</a>
-<a href="#resources">↗ Official resources</a>
-<a href="#journal">✎ Study journal</a>
+<a href="#ctf">âš‘ CTF challenge</a>
+<a href="#resources">â†— Official resources</a>
+<a href="#journal">âœŽ Study journal</a>
 </nav>
 
 <main>
@@ -200,14 +201,14 @@ xmlns="http://www.w3.org/2000/svg">
  fill="none" stroke="#77516d" stroke-width="3"
  stroke-linecap="round"/>
 </svg>
-<strong>Maya 💜</strong>
+<strong>Maya ðŸ’œ</strong>
 <small>Your AI learning assistant</small>
 </div>
 </section>
 
 <div class="grid">
 <section class="card w8" id="timer">
-<h2>◉ Your circular 14-hour stopwatch</h2>
+<h2>â—‰ Your circular 14-hour stopwatch</h2>
 <p class="muted">Start when you study. Pause for breaks. Your recorded time is saved in this browser.</p>
 <div class="timer">
 <div class="ring" id="ring"><div><span class="time" id="clock">00:00:00</span><br><small>of 14 hours</small></div></div>
@@ -216,8 +217,8 @@ xmlns="http://www.w3.org/2000/svg">
 <div class="muted">This week's study time</div>
 <div class="bar"><span id="progress"></span></div>
 <p id="timerMessage">Ready when you are.</p>
-<button class="btn green" id="start">▶ Start</button>
-<button class="btn secondary" id="pause">Ⅱ Pause</button>
+<button class="btn green" id="start">â–¶ Start</button>
+<button class="btn secondary" id="pause">â…¡ Pause</button>
 <button class="btn red" id="reset">Reset week</button>
 </div>
 </div>
@@ -231,22 +232,22 @@ xmlns="http://www.w3.org/2000/svg">
 </section>
 
 <section class="card w12" id="timetable">
-<h2>▦ Your repeating 14-day timetable</h2>
+<h2>â–¦ Your repeating 14-day timetable</h2>
 <p class="muted">Daily structure: 45 minutes learning, 55 minutes practical work, 20 minutes testing and documentation. Mark a day complete only after doing the work.</p>
 <div class="days" id="days"></div>
 <div class="maya" style="margin-top:13px">
-<strong id="dayTitle">Day 1 — Cybersecurity foundations</strong>
+<strong id="dayTitle">Day 1 â€” Cybersecurity foundations</strong>
 <p id="dayDetail"></p>
 <p><strong>Practical assignment:</strong> <span id="dayPractice"></span></p>
-<button class="btn green" id="completeDay">✓ Mark this day complete (+100 XP)</button>
+<button class="btn green" id="completeDay">âœ“ Mark this day complete (+100 XP)</button>
 <p id="dayMessage" class="muted"></p>
 </div>
 </section>
 
 <section class="card w6" id="rewards">
-<h2>🏆 Your XP rewards and level</h2>
+<h2>ðŸ† Your XP rewards and level</h2>
 <div class="stat" id="xp">0 XP</div>
-<p id="level">Level 1 — Cybersecurity Beginner</p>
+<p id="level">Level 1 â€” Cybersecurity Beginner</p>
 <div class="bar"><span id="xpBar"></span></div>
 <p id="nextLevel" class="muted"></p>
 <h3>Achievement hall</h3>
@@ -254,20 +255,20 @@ xmlns="http://www.w3.org/2000/svg">
 </section>
 
 <section class="card w6" id="lessons">
-<h2>▣ Your learning modules</h2>
+<h2>â–£ Your learning modules</h2>
 <div class="modules">
-<div class="module"><strong>🪟 Windows CMD</strong><small>Files, processes, services, IP configuration and troubleshooting.</small></div>
-<div class="module"><strong>⌨️ PowerShell</strong><small>Cmdlets, pipelines, objects, scripting and event logs.</small></div>
-<div class="module"><strong>🐧 Ubuntu and Kali Linux</strong><small>Files, users, permissions, packages and services.</small></div>
-<div class="module"><strong>🔴 Red Hat Linux</strong><small>dnf, rpm, systemctl, SELinux, firewalld and nmcli.</small></div>
-<div class="module"><strong>🌐 Networking</strong><small>OSI, TCP/IP, subnetting, DNS, DHCP, ports and routing.</small></div>
-<div class="module"><strong>📡 Traffic analysis</strong><small>Wireshark, tcpdump, packet headers and protocols.</small></div>
-<div class="module"><strong>🛡️ Web security</strong><small>Burp Suite, HTTP, cookies, sessions and authentication.</small></div>
-<div class="module"><strong>🔎 Defensive tools</strong><small>Nmap, Suricata, Snort, IDS/IPS and alert analysis.</small></div>
-<div class="module"><strong>🖥️ SOC operations</strong><small>SIEM, triage, incident response and investigation.</small></div>
-<div class="module"><strong>🧾 Digital forensics</strong><small>Evidence, hashes, metadata and timelines.</small></div>
-<div class="module"><strong>🐍 Python and Git</strong><small>Automation, scripting, GitHub and documentation.</small></div>
-<div class="module"><strong>☁️ Cloud and DevSecOps</strong><small>Cloud foundations, secure pipelines and deployment.</small></div>
+<div class="module"><strong>ðŸªŸ Windows CMD</strong><small>Files, processes, services, IP configuration and troubleshooting.</small></div>
+<div class="module"><strong>âŒ¨ï¸ PowerShell</strong><small>Cmdlets, pipelines, objects, scripting and event logs.</small></div>
+<div class="module"><strong>ðŸ§ Ubuntu and Kali Linux</strong><small>Files, users, permissions, packages and services.</small></div>
+<div class="module"><strong>ðŸ”´ Red Hat Linux</strong><small>dnf, rpm, systemctl, SELinux, firewalld and nmcli.</small></div>
+<div class="module"><strong>ðŸŒ Networking</strong><small>OSI, TCP/IP, subnetting, DNS, DHCP, ports and routing.</small></div>
+<div class="module"><strong>ðŸ“¡ Traffic analysis</strong><small>Wireshark, tcpdump, packet headers and protocols.</small></div>
+<div class="module"><strong>ðŸ›¡ï¸ Web security</strong><small>Burp Suite, HTTP, cookies, sessions and authentication.</small></div>
+<div class="module"><strong>ðŸ”Ž Defensive tools</strong><small>Nmap, Suricata, Snort, IDS/IPS and alert analysis.</small></div>
+<div class="module"><strong>ðŸ–¥ï¸ SOC operations</strong><small>SIEM, triage, incident response and investigation.</small></div>
+<div class="module"><strong>ðŸ§¾ Digital forensics</strong><small>Evidence, hashes, metadata and timelines.</small></div>
+<div class="module"><strong>ðŸ Python and Git</strong><small>Automation, scripting, GitHub and documentation.</small></div>
+<div class="module"><strong>â˜ï¸ Cloud and DevSecOps</strong><small>Cloud foundations, secure pipelines and deployment.</small></div>
 </div>
 </section>
 
@@ -291,7 +292,7 @@ xmlns="http://www.w3.org/2000/svg">
 </section>
 
 <section class="card w6" id="ctf">
-<h2>⚑ CTF practice challenge</h2>
+<h2>âš‘ CTF practice challenge</h2>
 <p><strong>Beginner networking challenge: Read the connection.</strong></p>
 <p>A lab computer connects to a web server at <code>192.0.2.20</code> on TCP destination port <code>443</code>. You observe a completed TCP three-way handshake.</p>
 <p>Identify the transport protocol, likely service and the three handshake flags in order. Explain what each flag does.</p>
@@ -303,31 +304,31 @@ xmlns="http://www.w3.org/2000/svg">
 </section>
 
 <section class="card w6" id="resources">
-<h2>↗ Official learning resources</h2>
+<h2>â†— Official learning resources</h2>
 <div class="resource">
-<a href="https://www.netacad.com/" target="_blank" rel="noopener">Cisco Networking Academy ↗</a>
-<a href="https://skillsforall.com/" target="_blank" rel="noopener">Cisco Skills for All ↗</a>
-<a href="https://tryhackme.com/" target="_blank" rel="noopener">TryHackMe ↗</a>
-<a href="https://www.comptia.org/certifications" target="_blank" rel="noopener">CompTIA certifications ↗</a>
-<a href="https://learn.microsoft.com/powershell/" target="_blank" rel="noopener">Microsoft PowerShell documentation ↗</a>
-<a href="https://docs.redhat.com/" target="_blank" rel="noopener">Red Hat documentation ↗</a>
-<a href="https://portswigger.net/web-security" target="_blank" rel="noopener">PortSwigger Web Security Academy ↗</a>
-<a href="https://www.wireshark.org/docs/" target="_blank" rel="noopener">Wireshark documentation ↗</a>
-<a href="https://docs.python.org/3/" target="_blank" rel="noopener">Python documentation ↗</a>
-<a href="https://picoctf.org/" target="_blank" rel="noopener">picoCTF ↗</a>
-<a href="https://overthewire.org/wargames/" target="_blank" rel="noopener">OverTheWire ↗</a>
+<a href="https://www.netacad.com/" target="_blank" rel="noopener">Cisco Networking Academy â†—</a>
+<a href="https://skillsforall.com/" target="_blank" rel="noopener">Cisco Skills for All â†—</a>
+<a href="https://tryhackme.com/" target="_blank" rel="noopener">TryHackMe â†—</a>
+<a href="https://www.comptia.org/certifications" target="_blank" rel="noopener">CompTIA certifications â†—</a>
+<a href="https://learn.microsoft.com/powershell/" target="_blank" rel="noopener">Microsoft PowerShell documentation â†—</a>
+<a href="https://docs.redhat.com/" target="_blank" rel="noopener">Red Hat documentation â†—</a>
+<a href="https://portswigger.net/web-security" target="_blank" rel="noopener">PortSwigger Web Security Academy â†—</a>
+<a href="https://www.wireshark.org/docs/" target="_blank" rel="noopener">Wireshark documentation â†—</a>
+<a href="https://docs.python.org/3/" target="_blank" rel="noopener">Python documentation â†—</a>
+<a href="https://picoctf.org/" target="_blank" rel="noopener">picoCTF â†—</a>
+<a href="https://overthewire.org/wargames/" target="_blank" rel="noopener">OverTheWire â†—</a>
 </div>
 </section>
 
 <section class="card w12" id="journal">
-<h2>✎ Your learning journal</h2>
+<h2>âœŽ Your learning journal</h2>
 <p class="muted">Record what you studied, what you practised, what happened and what you need to investigate next.</p>
 <textarea id="notes" placeholder="My learning notes..."></textarea>
 <button class="btn" id="saveNotes">Save notes</button>
 <span id="notesMessage" class="muted"></span>
 </section>
 </div>
-<footer>The Apostle Cybersecurity Academy • Learn ethically. Practise safely. Document honestly.<br>Study data is stored in this browser. Export a backup to preserve it.</footer>
+<footer>The Apostle Cybersecurity Academy â€¢ Learn ethically. Practise safely. Document honestly.<br>Study data is stored in this browser. Export a backup to preserve it.</footer>
 </main>
 </div>
 
@@ -452,17 +453,17 @@ function renderRewards(){
  for(let i=0;i<levels.length;i++)if(xp>=levels[i][1])level=i;
  const base=levels[level][1],next=levels[level+1]?.[1]??base;
  $("xp").textContent=xp.toLocaleString()+" XP";
- $("level").textContent="Level "+(level+1)+" — "+levels[level][0];
+ $("level").textContent="Level "+(level+1)+" â€” "+levels[level][0];
  $("nextLevel").textContent=level===levels.length-1?"Highest current Academy level achieved!":(next-xp)+" XP to next level.";
  $("xpBar").style.width=level===levels.length-1?"100%":Math.min(100,(xp-base)/(next-base)*100)+"%";
  const allDays=data.completed.length;
  const badges=[
-  ["🌱","First steps",allDays>=1],
-  ["📚","Seven-day learner",allDays>=7],
-  ["🏆","14-day discipline",allDays>=14],
-  ["🔥","14-hour champion",data.weeklyBonus.length>0],
-  ["🧠","Quiz master",data.quizAwards.length>=3],
-  ["🛡️","CTF problem solver",data.ctfDone]
+  ["ðŸŒ±","First steps",allDays>=1],
+  ["ðŸ“š","Seven-day learner",allDays>=7],
+  ["ðŸ†","14-day discipline",allDays>=14],
+  ["ðŸ”¥","14-hour champion",data.weeklyBonus.length>0],
+  ["ðŸ§ ","Quiz master",data.quizAwards.length>=3],
+  ["ðŸ›¡ï¸","CTF problem solver",data.ctfDone]
  ];
  $("badges").innerHTML="";
  badges.forEach(b=>{
@@ -479,7 +480,7 @@ const dayBox=$("days");
 curriculum.forEach((day,i)=>{
  const b=document.createElement("button");
  b.className="day";
- b.innerHTML="Day "+(i+1)+"<small>"+(data.completed.includes(i)?"✓ Complete":"Study")+"</small>";
+ b.innerHTML="Day "+(i+1)+"<small>"+(data.completed.includes(i)?"âœ“ Complete":"Study")+"</small>";
  b.onclick=()=>{
   selectedDay=i;
   document.querySelectorAll(".day").forEach(x=>x.classList.remove("selected"));
@@ -490,12 +491,12 @@ curriculum.forEach((day,i)=>{
 });
 function showDay(){
  const d=curriculum[selectedDay];
- $("dayTitle").textContent="Day "+(selectedDay+1)+" — "+d[0];
+ $("dayTitle").textContent="Day "+(selectedDay+1)+" â€” "+d[0];
  $("dayDetail").textContent=d[1];
  $("dayPractice").textContent=d[2];
  const done=data.completed.includes(selectedDay);
  $("completeDay").disabled=done;
- $("completeDay").textContent=done?"✓ Day completed":"✓ Mark this day complete (+100 XP)";
+ $("completeDay").textContent=done?"âœ“ Day completed":"âœ“ Mark this day complete (+100 XP)";
  $("dayMessage").textContent=done?"This day is already recorded in your current 14-day cycle.":"Complete the learning and practical work before claiming your points.";
 }
 showDay();
@@ -512,7 +513,7 @@ $("completeDay").onclick=()=>{
  showDay();
  [...dayBox.children].forEach((b,i)=>{
   b.classList.toggle("done",data.completed.includes(i));
-  b.innerHTML="Day "+(i+1)+"<small>"+(data.completed.includes(i)?"✓ Complete":"Study")+"</small>";
+  b.innerHTML="Day "+(i+1)+"<small>"+(data.completed.includes(i)?"âœ“ Complete":"Study")+"</small>";
  });
 };
 if(data.completed.length===14){
@@ -596,7 +597,7 @@ $("export").onclick=()=>{
 </style>
 
 <section id="mayaStudio">
- <h2>💜 Maya Avatar Studio</h2>
+ <h2>ðŸ’œ Maya Avatar Studio</h2>
  <p class="maya-help">
    Your personal Maya image gallery. Upload pictures from your computer,
    paste pictures from your clipboard, choose your favourite or let Maya
@@ -613,12 +614,12 @@ $("export").onclick=()=>{
  <input type="file" id="mayaUpload" accept="image/*" multiple>
 
  <div class="maya-paste" id="mayaPaste" tabindex="0">
-  <strong>📋 Paste an image here</strong>
+  <strong>ðŸ“‹ Paste an image here</strong>
   <p class="maya-help">Click this area and press Ctrl + V after copying an image.</p>
  </div>
 
  <div class="maya-controls">
-  <button id="mayaRandom">🎲 Random Maya</button>
+  <button id="mayaRandom">ðŸŽ² Random Maya</button>
   <button id="mayaExport" class="secondary">Export selected image</button>
  </div>
 
@@ -773,7 +774,7 @@ $("export").onclick=()=>{
    image.alt=record.name;
 
    const name=document.createElement("p");
-   name.textContent=record.name+(record.id===selectedId?" ✓ Current":"");
+   name.textContent=record.name+(record.id===selectedId?" âœ“ Current":"");
 
    const use=document.createElement("button");
    use.textContent="Use Maya";
@@ -912,5 +913,14 @@ $("export").onclick=()=>{
 })();
 </script>
 <!-- END APOSTLE_MAYA_STUDIO_V1 -->
+
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./service-worker.js")
+      .catch(error => console.error("Service worker registration failed:", error));
+  });
+}
+</script>
 </body>
 </html>

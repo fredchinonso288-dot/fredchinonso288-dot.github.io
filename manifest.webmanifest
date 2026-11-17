@@ -1,18 +1,19 @@
-{
-  "name": "The Apostle Cybersecurity Bible",
-  "short_name": "Apostle Bible",
-  "description": "A practical, searchable cybersecurity learning reference.",
-  "start_url": "./",
-  "scope": "./",
-  "display": "standalone",
-  "background_color": "#0b1220",
-  "theme_color": "#101827",
-  "icons": [
-    {
-      "src": "assets/icon.svg",
-      "sizes": "any",
-      "type": "image/svg+xml",
-      "purpose": "any maskable"
-    }
-  ]
+﻿{
+    "description":  "Your interactive cybersecurity learning academy.",
+    "short_name":  "Apostle Academy",
+    "background_color":  "#f4efff",
+    "icons":  [
+                  {
+                      "purpose":  "any maskable",
+                      "type":  "image/svg+xml",
+                      "sizes":  "any",
+                      "src":  "./icon.svg"
+                  }
+              ],
+    "orientation":  "any",
+    "theme_color":  "#211348",
+    "display":  "standalone",
+    "name":  "The Apostle Cybersecurity Academy",
+    "scope":  "./",
+    "start_url":  "./academy.html"
 }
