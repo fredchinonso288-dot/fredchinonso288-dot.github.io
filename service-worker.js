@@ -1,4 +1,5 @@
-﻿const CACHE_NAME = "apostle-academy-v2";
+const CACHE_NAME = "apostle-academy-v3";
+
 const FILES = [
   "./",
   "./index.html",
@@ -30,20 +31,30 @@ self.addEventListener("activate", event => {
 self.addEventListener("fetch", event => {
   if (event.request.method !== "GET") return;
 
-  event.respondWith(
-    caches.match(event.request).then(cached =>
-      cached || fetch(event.request).then(response => {
-        if (response.ok) {
-          const copy = response.clone();
-          caches.open(CACHE_NAME).then(cache => cache.put(event.request, copy));
-        }
-        return response;
-      }).catch(() => {
-        if (event.request.mode === "navigate") {
-          return caches.match("./academy.html");
-        }
-        return Response.error();
-      })
-    )
-  );
+  const requestURL = new URL(event.request.url);
+
+  if (requestURL.origin !== self.location.origin) return;
+
+  event.respondWith((async () => {
+    try {
+      const response = await fetch(event.request);
+
+      if (response && response.ok) {
+        const cache = await caches.open(CACHE_NAME);
+        await cache.put(event.request, response.clone());
+      }
+
+      return response;
+    } catch (error) {
+      const cached = await caches.match(event.request);
+
+      if (cached) return cached;
+
+      if (event.request.mode === "navigate") {
+        return (await caches.match("./academy.html")) || Response.error();
+      }
+
+      return Response.error();
+    }
+  })());
 });
